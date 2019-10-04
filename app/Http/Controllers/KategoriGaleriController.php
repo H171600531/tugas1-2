@@ -10,10 +10,21 @@ class KategoriGaleriController extends Controller
 
 	public function index(){
     //Eloquent => ORM (Object Relational Mapping)
-    $listKategoriGaleri=KategoriGaleri::all(); //select*from kategori_artikel
+    $listKategoriGaleri=KategoriGaleri::all(); //select*from kategori_galeri
 
     //blade
     return view('kategori_galeri.index', compact('listKategoriGaleri'));
-    //return view(view: 'kategori_galeri.index')->with('data',$listKategoriArtikel);
+    //return view(view: 'kategori_galeri.index')->with('data',$listKategoriGaleri);
+	}
+	public function show($id){
+
+		//$KategoriGaleri=KategoriGaleri::where('id',$id)->first();
+		$listKategoriGaleri=KategoriGaleri::find($id);
+
+		return view ('kategori_galeri.show', compact('listKategoriGaleri'));
+	}
+
+	public function create(){
+		return view('kategori_galeri.create');
 	}
 }

@@ -9,10 +9,21 @@ class BeritaController extends Controller
 {
 	public function index(){
     //Eloquent => ORM (Object Relational Mapping)
-    $listBerita=Berita::all(); //select*from artikel
+    $listBerita=Berita::all(); //select*from berita
 
     //blade
     return view('berita.index', compact('listBerita'));
-    //return view(view: 'artikel.index')->with('data',$listArtikel);
+    //return view(view: 'berita.index')->with('data',$listArtikel);
+	}
+	public function show($id){
+
+		//$Berita=Berita::where('id',$id)->first();
+		$listBerita=Berita::find($id);
+
+		return view ('berita.show', compact('listBerita'));
+	}
+
+	public function create(){
+		return view('berita.create');
 	}
 }

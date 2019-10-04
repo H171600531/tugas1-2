@@ -9,10 +9,21 @@ class PengumumanController extends Controller
 {
 	public function index(){
     //Eloquent => ORM (Object Relational Mapping)
-    $listPengumuman=Pengumuman::all(); //select*from artikel
+    $listPengumuman=Pengumuman::all(); //select*from pengumuman
 
     //blade
     return view('pengumuman.index', compact('listPengumuman'));
-    //return view(view: 'galeri.index')->with('data',$listgaleri);
+    //return view(view: 'pengumuman.index')->with('data',$listgaleri);
+	}
+	public function show($id){
+
+		//$Pengumuman=Pengumuman::where('id',$id)->first();
+		$listPengumuman=Pengumuman::find($id);
+
+		return view ('pengumuman.show', compact('listPengumuman'));
+	}
+
+	public function create(){
+		return view('pengumuman.create');
 	}
 }

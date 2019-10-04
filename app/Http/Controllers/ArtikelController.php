@@ -15,4 +15,15 @@ class ArtikelController extends Controller
     return view('artikel.index', compact('listArtikel'));
     //return view(view: 'artikel.index')->with('data',$listArtikel);
 	}
+	public function show($id){
+
+		//$Artikel=Artikel::where('id',$id)->first();
+		$listArtikel=Artikel::find($id);
+
+		return view ('artikel.show', compact('listArtikel'));
+	}
+
+	public function create(){
+		return view('artikel.create');
+	}
 }

@@ -9,10 +9,21 @@ class KategoriBeritaController extends Controller
 {
     public function index(){
     //Eloquent => ORM (Object Relational Mapping)
-    $listKategoriBerita=KategoriBerita::all(); //select*from kategori_artikel
+    $listKategoriBerita=KategoriBerita::all(); //select*from kategori_berita
 
     //blade
     return view('kategori_berita.index', compact('listKategoriBerita'));
     //return view(view: 'kategori_berita.index')->with('data',$listKategoriBerita);
 }
+public function show($id){
+
+		//$KategoriBerita=KategoriBerita::where('id',$id)->first();
+		$listKategoriBerita=KategoriBerita::find($id);
+
+		return view ('kategori_berita.show', compact('listKategoriBerita'));
+	}
+
+	public function create(){
+		return view('kategori_berita.create');
+	}
 }

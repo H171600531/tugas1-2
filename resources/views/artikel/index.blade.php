@@ -8,29 +8,28 @@
                 <div class="card-header">Artikel</div>
 
                 <div class="card-body">
+                	<a href="{!! route('artikel.create') !!}" class="btn btn-primary">Tambah Data</a>
                    <table border="1">
 		<tr>
 			<td><center> ID </center></td>
-			<td><center> Judul </center></td>
-			<td><center> Isi </center></td>
-			<td><center> user_id </center></td>
+			<td><center> Nama </center></td>
+			<td><center> Users Id </center></td>
 			<td><center>Create</center></td>
 			<td><center>Update</center></td>
-			<td><center>kategori Artikel_id</center></td>
-			
+			<td><center>Aksi</center></td>
 		</tr>
 
 		@foreach($listArtikel as $item)
 
 		<tr>
 			<td>{!! $item->id !!}</td>
-			<td>{!! $item->judul !!}</td>
-			<td>{!! $item->isi !!}</td>
+			<td>{!! $item->nama !!}</td>
 			<td>{!! $item->users_id !!}</td> 
 			<td>{!! $item->created_at->format('d/m/Y H:i:s') !!}</td>
 			<td>{!! $item->updated_at->format('d/m/Y H:i:s') !!}</td>
-			<td>{!! $item->kategori_artike_id !!}</td>
-			
+			<td>
+			<a href="{!! route('artikel.show',[$item->id]) !!}" class="btn btn-primary">Lihat</a>
+		</td>
 		</tr>
 
 		@endforeach

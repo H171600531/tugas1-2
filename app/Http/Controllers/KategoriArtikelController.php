@@ -8,12 +8,23 @@ use App\KategoriArtikel;
 class KategoriArtikelController extends Controller
 {
 	public function index(){
-    //Eloquent => ORM (Object Relational Mapping)
-    $listKategoriArtikel=KategoriArtikel::all(); //select*from kategori_artikel
+    
+    $listKategoriArtikel=KategoriArtikel::all(); 
 
-    //blade
     return view('kategori_artikel.index', compact('listKategoriArtikel'));
     //return view(view: 'kategori_artikel.index')->with('data',$listKategoriArtikel);
+	}
+
+	public function show($id){
+
+		//$KategoriArtikel=KategoriArtikel::where('id',$id)->first();
+		$listKategoriArtikel=KategoriArtikel::find($id);
+
+		return view ('kategori_artikel.show', compact('listKategoriArtikel'));
+	}
+
+	public function create(){
+		return view('kategori_artikel.create');
 	}
 }
  
