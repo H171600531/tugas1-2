@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Galeri;
+use Illuminate\Http\Request;
+use App\KategoriGaleri;
 
 class GaleriController extends Controller
 {
@@ -13,7 +14,7 @@ class GaleriController extends Controller
 
     //blade
     return view('galeri.index', compact('listGaleri'));
-    //return view(view: 'galeri.index')->with('data',$listgaleri);
+    //return view(view: 'galeri.index')->with('data',$listGaleri);
 	}
 	public function show($id){
 
@@ -24,6 +25,17 @@ class GaleriController extends Controller
 	}
 
 	public function create(){
-		return view('galeri.create');
+
+		$KategoriGaleri= KategoriGaleri::pluck('nama','id');
+	
+		return view('galeri.create',compact('KategoriGaleri'));
+	}
+
+	public function store(Request $request){
+		$input=$request->all();
+
+		Galeri::create($input);
+
+		return redirect(route('galeri.index'));
 	}
 }

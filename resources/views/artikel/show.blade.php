@@ -20,12 +20,12 @@
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">User id</label>
+                        <label class="col-md-4 col-form-label text-md-right">Users id</label>
                         <label class="col-md-4 col-form-label text-md-left">{!! $listArtikel ->users_id!!}</label>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">Creat</label> 
+                        <label class="col-md-4 col-form-label text-md-right">Create</label> 
                         <label class="col-md-4 col-form-label text-md-left">{!! $listArtikel ->created_at!!}</label>
                       </div>
 

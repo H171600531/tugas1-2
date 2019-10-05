@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Pengumuman;
+use Illuminate\Http\Request;
+use App\KategoriPengumuman;
 
 class PengumumanController extends Controller
 {
@@ -13,7 +14,7 @@ class PengumumanController extends Controller
 
     //blade
     return view('pengumuman.index', compact('listPengumuman'));
-    //return view(view: 'pengumuman.index')->with('data',$listgaleri);
+    //return view(view: 'pengumuman.index')->with('data',$listPengumuman);
 	}
 	public function show($id){
 
@@ -24,6 +25,17 @@ class PengumumanController extends Controller
 	}
 
 	public function create(){
-		return view('pengumuman.create');
+
+		$KategoriPengumuman= KategoriPengumuman::pluck('nama','id');
+	
+		return view('pengumuman.create',compact('KategoriPengumuman'));
+	}
+
+	public function store(Request $request){
+		$input=$request->all();
+
+		Pengumuman::create($input);
+
+		return redirect(route('pengumuman.index'));
 	}
 }
