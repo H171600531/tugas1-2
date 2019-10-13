@@ -74,5 +74,13 @@ class KategoriArtikelController extends Controller
 	return redirect(route('kategori_artikel.index'));
 	}
 
+	public function trash(){
+    $listKategoriArtikel=KategoriArtikel::trashed(); //select*from kategori_artikel
+
+    //blade
+    return view('kategori_artikel.index', compact('listKategoriArtikel'));
+    //return view(view: 'kategori_artikel.index')->with('data',$listKategoriArtikel);
+	}
+
 }
  
