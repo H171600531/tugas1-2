@@ -2,40 +2,72 @@
 
 namespace App\Http\Controllers;
 
-use App\Pengumuman;
 use Illuminate\Http\Request;
+use App\Pengumuman;
 use App\KategoriPengumuman;
 
 class PengumumanController extends Controller
 {
-	public function index(){
-    //Eloquent => ORM (Object Relational Mapping)
-    $listPengumuman=Pengumuman::all(); //select*from pengumuman
+    public function index(){
+    	
+    	$listPengumuman=Pengumuman::all(); 
 
-    //blade
-    return view('pengumuman.index', compact('listPengumuman'));
-    //return view(view: 'pengumuman.index')->with('data',$listPengumuman);
-	}
-	public function show($id){
+    	return view ('pengumuman.index',compact('listPengumuman'));
+    	//return view ('pengumuman.index'->with('data',$listPengumuman);
+    }
 
-		//$Pengumuman=Pengumuman::where('id',$id)->first();
-		$listPengumuman=Pengumuman::find($id);
+    public function show($id) {
 
-		return view ('pengumuman.show', compact('listPengumuman'));
-	}
+        //$Pengumuman=Pengumuman::where('id',$id)->first();
+        $Pengumuman=Pengumuman::find($id);
 
-	public function create(){
+        return view ('pengumuman.show', compact('Pengumuman'));
+        
+    }
 
-		$KategoriPengumuman= KategoriPengumuman::pluck('nama','id');
-	
-		return view('pengumuman.create',compact('KategoriPengumuman'));
-	}
+    public function create(){
 
-	public function store(Request $request){
-		$input=$request->all();
+        $KategoriPengumuman=KategoriPengumuman::pluck('nama','id');
+        
+        return view('pengumuman.create', compact('KategoriPengumuman'));
+    }
 
-		Pengumuman::create($input);
+    public function store(Request $request){
 
-		return redirect(route('pengumuman.index'));
-	}
+        $input= $request->all();
+
+        Pengumuman::create($input);
+
+        return redirect(route('pengumuman.index'));
+    }
+
+    public function edit($id) {
+        $Pengumuman = Pengumuman::find($id);
+        $listKategoriPengumuman=KategoriPengumuman::pluck('nama','id');
+
+        return view('pengumuman.edit', compact('Pengumuman','listKategoriPengumuman'));
+    }
+
+    public function update($id,Request $request){
+      $listPengumuman=Pengumuman::find($id);
+      $input=$request->all();
+  
+      if(empty($listPengumuman)) {
+        return redirect(route('pengumuman.index'));
+      }
+
+      $listPengumuman->update($input);
+      return redirect(route('pengumuman.index'));
+    }
+
+    public function destroy($id){
+        $listPengumuman=Pengumuman::find($id);
+
+        if (empty($listPengumuman)){
+            return redirect(route ('pengumuman.index'));
+        }
+
+        $listPengumuman->delete();
+        return redirect(route('pengumuman.index'));
+    }
 }

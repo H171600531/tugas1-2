@@ -8,41 +8,41 @@
                 <div class="card-header">Artikel</div>
 
                 <div class="card-body">
-                   
-                   <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">ID</label>
-                        <label class="col-md-4 col-form-label text-md-left">{!! $listArtikel ->id !!}</label>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">Nama</label>
-                        <label class="col-md-4 col-form-label text-md-left">{!! $listArtikel ->nama !!}</label>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">Users id</label>
-                        <label class="col-md-4 col-form-label text-md-left">{!! $listArtikel ->users_id!!}</label>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">Create</label> 
-                        <label class="col-md-4 col-form-label text-md-left">{!! $listArtikel ->created_at!!}</label>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">Update</label>
-                        <label class="col-md-4 col-form-label text-md-left">{!! $listArtikel ->updated_at!!}</label>
-                      </div>
-
-                      <div class="form-group row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                      <a href="{!! route('artikel.index')!!}" class="btn btn-primary">Back</a>
-                    </div>
-                  </div>
+               
+                 <div class="form-group row">
+                   <label class="col-md-4 col-form-label text-md-right">ID</label>
+                   <label class="col-md-8 col-form-label text-md-left">{!! $Artikel->id !!}</label>
                 </div>
-              </div>
+
+                <div class="form-group row">
+                   <label class="col-md-4 col-form-label text-md-right">Judul</label>
+                   <label class="col-md-8 col-form-label text-md-left">{!! $Artikel->judul !!}</label>
+                </div>
+
+              <div class="form-group row">
+                   <label class="col-md-4 col-form-label text-md-right">Kategori</label>
+                   <label class="col-md-8 col-form-label text-md-left">{!! $Artikel->kategori_artikel_id !!}</label>
+                </div>
+
+                 <div class="form-group row">
+                   <label class="col-md-4 col-form-label text-md-right">Users Id</label>
+                   <label class="col-md-8 col-form-label text-md-left">{!! $Artikel->users_id !!}</label>
+                </div>
+
+                <div class="form-group row">
+                   <label class="col-md-4 col-form-label text-md-right">Create</label>
+                   <label class="col-md-8 col-form-label text-md-left">{!! $Artikel->created_at->format('d/m/Y H:i') !!}</label>
+                </div>
+
+                <div class="form-group row mb-0">
+                    <div class="col-md-6 offset-md-4">
+                                <a href="{!!route('artikel.index')  !!}" class="btn btn-primary">
+                                    Back</a>
+                                </button>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 @endsection
-

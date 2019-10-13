@@ -3,43 +3,55 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Berita</div>
+                <center><div class="card-header">Berita</div></center>
+                 <a href="{!! route('berita.create') !!}" class="btn btn-success">Tambah Data</a>
+                <center>
                 <div class="card-body">
-                    <a href="{!! route('berita.create') !!}" class="btn btn-primary">Tambah Data</a>
-                <table class="table table-bordered">
-                    <thead class="bg-warning">
-                        <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Judul</th>
-                        <th scope="col">Isi</th>
-                        <th scope="col">Kategori</th>
-                        <th scope="col">Users Id</th>
-                        <th scope="col">Create</th>
-                        <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                    
+                   <table border="1">
+                        <thead class="btn-lg bg-info">
+                            <tr>
+                                <th scope="col"><center>ID</center></th>
+                                <th scope="col"><center>Judul</center></th>
+                                <th scope="col"><center>Isi</center></th>
+                                <th scope="col"><center>Kategori</center></th>
+                                <th scope="col"><center>Users Id</center></th>
+                                <th scope="col"><center>Create</center>
+                                <th scope="col"><center>Update</center>
+                                <th scope="col"><center>Aksi</center></th>
+                            </tr>
+                        </thead>
 
-                        @foreach( $listBerita as $item)
-                        <tr>
-                        <td>{!! $item->id !!}</td>
-                        <td>{!! $item->judul !!}</td>
-                        <td>{!! $item->isi !!}</td>
-                        <td>{!! $item->kategori_berita_id !!}</td>
-                        <td>{!! $item->users_id !!}</td>
-                        <td>{!! $item->created_at->format('d/m/Y H:i:s') !!}</td>
+
+        @foreach($listBerita as $item)
+
+        <tr>
+            <td><center>{!! $item->id !!}</center></td>
+            <td><center>{!! $item->judul !!}</center></td>
+            <td><center>{!! $item->isi !!}</center></td>
+            <td><center>{!! $item->kategori_berita_id !!}</center></td> 
+            <td><center>{!! $item->users_id !!}</center></td>
+            <td><center>{!! $item->created_at->format('d/m/Y H:i:s') !!}</center></td>
+            <td><center>{!! $item->updated_at->format('d/m/Y H:i:s') !!}</center></td>
                         <td>
-                         <a href="{!! route('berita.show',[$item->id]) !!}"class="btn btn-success">Lihat</a>
-                        </td>
-                        </tr>
-                       @endforeach
-                    </tbody>
-                </table>
+                <a href=" {!! route('berita.show',[$item->id]) !!}" class="btn btn-lg btn-success">Lihat</a>
+
+                <a href=" {!! route('berita.edit',[$item->id]) !!}" class="btn btn-lg btn-warning">Edit</a>
+
+                {!! Form::open( ['route' => ['berita.destroy', $item->id],'method'=>'delete']) !!}
+                {!! Form::submit('Hapus',['class'=>'btn btn-lg btn-danger','onclick'=>"return confirm('Apakah anda yakin menghapus data ini ?')"]); !!}
+                {!! Form::close() !!}
+            </td>
+        </tr>
+
+        @endforeach
+    </table>
+</center>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

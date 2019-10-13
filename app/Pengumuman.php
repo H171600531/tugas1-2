@@ -12,8 +12,5 @@ class Pengumuman extends Model
     	'judul','isi','users_id','kategori_pengumuman_id'
     ];
 
-    protected $casts=[
-    	
-    ];
 }
 

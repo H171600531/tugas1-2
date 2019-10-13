@@ -8,34 +8,74 @@ use App\KategoriGaleri;
 
 class GaleriController extends Controller
 {
-	public function index(){
-    //Eloquent => ORM (Object Relational Mapping)
-    $listGaleri=Galeri::all(); //select*from galeri
+    public function index(){
+        
+        $listGaleri=Galeri::all(); 
 
-    //blade
-    return view('galeri.index', compact('listGaleri'));
-    //return view(view: 'galeri.index')->with('data',$listGaleri);
-	}
-	public function show($id){
+        return view ('galeri.index',compact('listGaleri'));
+        //return view ('artikel.index'->with('data',$listArtikel);
+    }
 
-		//$Galeri=Galeri::where('id',$id)->first();
-		$listGaleri=Galeri::find($id);
+    public function show($id) {
 
-		return view ('galeri.show', compact('listGaleri'));
-	}
+        //$Galeri=Galeri::where('id',$id)->first();
+        $Galeri=Galeri::find($id);
 
-	public function create(){
+        return view ('galeri.show', compact('Galeri'));
+        
+    }
 
-		$KategoriGaleri= KategoriGaleri::pluck('nama','id');
-	
-		return view('galeri.create',compact('KategoriGaleri'));
-	}
+    public function create(){
 
-	public function store(Request $request){
-		$input=$request->all();
+        $KategoriGaleri=KategoriGaleri::pluck('nama','id');
+        
+        return view('galeri.create', compact('KategoriGaleri'));
+    }
 
-		Galeri::create($input);
+    public function store(Request $request){
 
-		return redirect(route('galeri.index'));
-	}
+        $input= $request->all();
+
+        Galeri::create($input);
+
+        return redirect(route('galeri.index'));
+    }
+
+    public function edit($id){
+    $Galeri=Galeri::find($id);
+    $KategoriGaleri=KategoriGaleri::pluck('nama','id');
+
+    
+
+    if(empty($Galeri)){
+    return redirect(route('galeri.index'));
+    }
+
+        return view('galeri.edit', compact('Galeri','KategoriGaleri'));
+    }
+
+    public function update($id, Request $request){
+        $Galeri=Galeri::find($id);
+        $input= $request->all();
+
+    if(empty($Galeri)){
+    return redirect(route('galeri.index'));
+    }
+
+    $Galeri->update($input);
+
+    return redirect(route ('galeri.index'));
+
+    }
+
+    public function destroy($id){
+    $Galeri=Galeri::find($id);
+
+    
+    if(empty($Galeri)){
+    return redirect(route('galeri.index'));
+    } 
+    $Galeri->delete();
+    return redirect(route('galeri.index'));
+    }
 }

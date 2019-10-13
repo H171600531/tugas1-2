@@ -5,39 +5,49 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Kategori Artikel</div>
-
+                <center><div class="card-header">Kategori Artikel</div></center>
+                	<a href="{!! route('kategori_artikel.create') !!}" class="btn btn-success">Tambah Data</a>
+                <center>
                 <div class="card-body">
-                	<a href="{!! route('kategori_artikel.create') !!}" class="btn btn-primary">Tambah Data</a>
+                	
                    <table border="1">
-		<tr>
-			<td><center> ID </center></td>
-			<td><center> Nama </center></td>
-			<td><center> Users Id </center></td>
-			<td><center>Create</center></td>
-			<td><center>Update</center></td>
-			<td><center>Aksi</center></td>
-		</tr>
+                   	    <thead class="btn-lg bg-info">
+                   			<tr>
+								<th scope="col"><center>ID</center></th>
+								<th scope="col"><center>Nama</center></th>
+								<th scope="col"><center>Users Id</center></th>
+								<th scope="col"><center>Create</center></th>
+								<th scope="col"><center>Update</center></th>
+								<th scope="col"><center>Aksi</center></th>
+							</tr>
+                  	 	</thead>
+
 
 		@foreach($listKategoriArtikel as $item)
 
 		<tr>
-			<td>{!! $item->id !!}</td>
-			<td>{!! $item->nama !!}</td>
-			<td>{!! $item->users_id !!}</td> 
-			<td>{!! $item->created_at->format('d/m/Y H:i:s') !!}</td>
-			<td>{!! $item->updated_at->format('d/m/Y H:i:s') !!}</td>
+			<td><center>{!! $item->id !!}</center></td>
+			<td><center>{!! $item->nama !!}</center></td>
+			<td><center>{!! $item->users_id !!}</center></td> 
+			<td><center>{!! $item->created_at->format('d/m/Y H:i:s') !!}</center></td>
+			<td><center>{!! $item->updated_at->format('d/m/Y H:i:s') !!}</center></td>
 			<td>
-			<a href="{!! route('kategori_artikel.show',[$item->id]) !!}" class="btn btn-primary">Lihat</a>
-		</td>
+				<a href=" {!! route('kategori_artikel.show',[$item->id]) !!}" class="btn btn-lg btn-success">Lihat</a>
+			
+				<a href=" {!! route('kategori_artikel.edit',[$item->id]) !!}" class="btn btn-lg btn-warning">Edit</a>
+
+				{!! Form::open( ['route' => ['kategori_artikel.destroy', $item->id],'method'=>'delete']) !!}
+				{!! Form::submit('Hapus',['class'=>'btn btn-lg btn-danger','onclick'=>"return confirm('Apakah Kamu Yakin Ingin Menghapus ?')"]); !!}
+				{!! Form::close() !!}
+			</td>
 		</tr>
 
 		@endforeach
 	</table>
+</center>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
